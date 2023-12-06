@@ -1,0 +1,23 @@
+﻿@model Article
+
+
+<table class="table table-hover table-striped ">
+    <a href="/Admin/Article/Index" class="btn btn-success w-100"><i class="fa-solid fa-arrow-left-long"></i>Article Back</a>
+    <a href="javascript:alert('@Model.Content.')" class="btn btn-primary w-100">Product Context Click! <i class="fa-solid fa-circle-info"></i> </a>
+    <colgroup>
+        <col style="background-color:darkblue" />
+    </colgroup>
+    <thead>
+        <tr class="text-center">
+            <th>Photo-Title <i class="fa-solid fa-arrow-down-long"></i><br /> @Model.Title</th>
+            @*  <th>Product Context</th>*@
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="text-center">
+            <td>
+                <img src="@Model.PhotoUrl" width="277">
+            </td>
+        </tr>
+    </tbody>
+</table>

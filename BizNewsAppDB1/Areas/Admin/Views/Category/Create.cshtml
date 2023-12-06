@@ -1,0 +1,22 @@
+﻿@model Category
+
+
+<div class="col-lg-6 m-auto">
+    <div class="card-body shadow p-3">
+        <form method="post">
+            <a href="/Admin/category" class="btn btn-outline-warning  m-1 w-100"> <i class="fa-solid fa-left-long"></i>  Back</a>
+            <div class="form-group">
+                <label asp-for="CategoryName"></label>
+                <input type="text" class="btn btn-success form-control zmdi-cloud-outline w-100" placeholder="Enter Category Name..." asp-for="CategoryName" value="" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                @{
+                    if (ViewBag.Error != null)
+                    {
+                        <p class="text text-danger">@ViewBag.Error</p>
+                    }
+                }
+            </div>
+            <input type="submit" class="btn btn-info was-validated" value="Create CategoryName" />
+        </form>
+    </div>
+</div>

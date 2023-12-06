@@ -1,0 +1,22 @@
+﻿@model Tag
+
+
+<div class="col-lg-6 m-auto justify-content-center">
+    <div class="card shadow p-3 mb-4">
+   <form method="post">
+      <a href="/Admin/tag" class="btn btn-outline-primary w-100">  <i class="fa-solid fa-left-long"></i> Back</a>
+    <div class="form-group">  
+      <label asp-for="TagName"></label>
+      <input type="text" class="btn btn-info w-100" asp-for="TagName" value="@Model.TagName" />
+      <span asp-validation-for="TagName" class="text text-danger"></span>
+                @{
+                    if (ViewBag.Tagexist != null)
+                    {
+                        <p class="text text-danger">@ViewBag.Tagexist</p>
+                    }
+                }
+    </div>
+    <input type="submit" class="btn btn-success" value="Update" />
+  </form>
+    </div>
+</div>

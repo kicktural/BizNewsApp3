@@ -1,0 +1,24 @@
+﻿@model Microsoft.AspNetCore.Identity.IdentityRole
+
+
+
+<div class="col-lg-6 m-auto">
+    <div class="card shadow p-3">
+        <form method="post">
+            <a href="/Admin/role" class="btn btn-outline-info  m-1 w-100"> <i class="fa-solid fa-left-long"></i> Role  Back</a>
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input type="text" asp-for="Name" placeholder="Enter role name..." class="btn btn-success form-control w-100" value="" />
+                <span asp-validation-for="Name"></span>
+                @{
+                    if (ViewBag.Error != null)
+                    {
+                        <p class="text-danger">@ViewBag.Error</p>
+                    }
+                }
+            </div>
+            <input type="submit" class="btn btn-primary" value="Role Create" />
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,10 @@
+﻿@model Category
+
+
+<a href="/Admin/Category" class="btn btn-outline-warning w-auto m-2"> <i class="fa-solid fa-left-long"></i>Category  Back</a>
+@*<h1 class="btn btn-dark p-2 mt-1">@Model.CategoryName</h1>*@
+<details class="btn btn-success">
+    <summary>@Model.CategoryName</summary>
+    <p>BizNews CategoryName @Model.CategoryName</p>
+</details>
+<h1 class="btn btn-info m-2">@Model.UpdateDate.ToString("dddd, MMM yyy")</h>

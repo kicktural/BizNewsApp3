@@ -1,0 +1,8 @@
+﻿@model Tag
+
+<a href="/Admin/tag" class="btn btn-outline-success w-auto m-1"> <i class="fa-solid fa-left-long"></i> Back</a>
+<details class="btn btn-success">
+    <summary>@Model.TagName</summary>
+     <p>BizNews TagName @Model.TagName</p>
+</details>
+<p class="btn btn-info m-1">@Model.CreateDate.ToString("dddd, dd MMMM yyyy")</p>

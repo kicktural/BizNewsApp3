@@ -1,0 +1,23 @@
+﻿@model Tag
+
+<div class="col-lg-6 m-auto pt-9">
+    <div class="card shadow p-3 mb-4">
+    <form method="post">
+        <a href="/Admin/tag" class="btn btn-outline-primary  m-1 w-100"> <i class="fa-solid fa-left-long"></i>   Back</a>
+        <div class="form-group">
+            <label asp-for="TagName"></label>
+            <input type="text" class="btn btn-success form-control w-100" placeholder="Enter Tag name..." asp-for="TagName" value="" />
+            <span asp-validation-for="TagName" class="text-danger"></span>
+            @{
+                if (ViewBag.Errors != null)
+                {
+                    <p class="text text-danger">@ViewBag.Errors</p>
+                }
+            }
+        </div>
+        <input type="submit" class="btn btn-info was-validated" value="TagName Create" />
+    </form>
+</div>
+   </div>
+
+

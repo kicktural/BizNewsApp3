@@ -1,0 +1,111 @@
+﻿@model PopArticleVM
+
+<a href="#" class="btn btn-success w-50">Popular Product</a>
+<a href="/Home/Index" class="btn btn-warning ml-lg-3 w-25">Go to Article Product</a>
+<table id="dataTable" class="table table-hover">
+    <colgroup>
+        <col span="2" style="background-color:black">
+        <col style="background-color:black">
+        <col style="background-color: goldenrod">
+        @*     <col style="background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9vYLe-HoYPwCyvMxB2h5P2ZhbcNoeLQaoTKIJGYPxqA&s)" />*@
+        <col style="background-color:black">
+    </colgroup>
+
+    <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Title</th>
+            <th>View Count</th>
+            <th>Photo</th>
+            <th>Create Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PopArticle)
+        {
+            <tr class="text-center">
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.ViewCount</td>
+                <td>
+                    <img src="@item.PhotoUrl" width="180" alt="" />
+                </td>
+                <td>@item.CreateDate.ToString("dddd, dd/MMMM")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a href="#" class="btn btn-success w-50">Is Featured Products Product</a>
+<a href="/Home/Index" class="btn btn-info ml-lg-3 w-25">Go to IsFeatured Product</a>
+<table id="dataTable" class="table table-hover">
+    <colgroup>
+        <col span="2" style="background-color:black">
+        <col style="background-color:black">
+        <col style="background-color: darkgreen">
+        <col style="background-color:black">
+    </colgroup>
+
+    <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Title</th>
+            <th>View Count</th>
+            <th>Photo</th>
+            <th>Create Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.IsFeatured)
+        {
+            <tr class="text-center">
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.ViewCount</td>
+                <td>
+                    <img src="@item.PhotoUrl" width="180" alt="" />
+                </td>
+                <td>@item.CreateDate.ToString("dddd, dd/MMMM")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<a href="#" class="btn btn-success w-50">Recent Product</a>
+<a href="/Home/Index" class="btn btn-warning ml-lg-3 w-25">Go to Recent Product</a>
+<table id="dataTable" class="table table-hover">
+    <colgroup>
+        <col span="2" style="background-color:black">
+        <col style="background-color:black">
+        <col style="background-color: darkblue">
+        <col style="background-color:black">
+    </colgroup>
+
+    <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Title</th>
+            <th>View Count</th>
+            <th>Photo</th>
+            <th>Create Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.RecentProduct)
+        {
+            <tr class="text-center">
+                <td>@item.Id</td>
+                <td>@item.Title</td>
+                <td>@item.ViewCount</td>
+                <td>
+                    <img src="@item.PhotoUrl" width="180" alt="" />
+                </td>
+                <td>@item.CreateDate.ToString("dddd, dd/MMMM")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

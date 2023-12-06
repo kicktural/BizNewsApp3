@@ -1,0 +1,61 @@
+﻿@model Article
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <a href="/Admin/article" class="btn btn-outline-info"> <i class="fa-solid fa-backward"></i>   Article Back</a>
+    </div>
+    <div asp-validation-summary="All" class="text text-danger"></div>
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input type="text" asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Content"></label>
+        <textarea id="editor" type="text" asp-for="Content" class="form-control"></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="photo">Photo</label>
+        <input type="file" accept="image/*" id="photo" name="Photo" />
+        <span asp-validation-for="PhotoUrl" class="text-danger"></span>
+    </div>
+        @if (ViewBag.PhotoError != null)
+    {
+            <p class="text-danger">@ViewBag.PhotoError</p>
+    }
+    <div class="form-group">
+        <select class="form-control" asp-for="CategoryId" asp-items="@ViewBag.Categories">
+            <option>Select Category</option>
+        </select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <select multiple class="form-control" name="tagIds">
+            @foreach (var item in ViewBag.Tags as List<Tag>)
+            {
+                <option value="@item.Id">@item.TagName</option>
+            }
+        </select>
+        @if(ViewBag.TagError != null)
+        {
+            <p class="text-danger">@ViewBag.TagError</p>
+        }
+    </div>
+        <div class="form-group">
+            <label asp-for="IsFeatured">Featured</label>
+            <input type="checkbox" asp-for="IsFeatured" />
+        </div>
+    <div class="form-group">
+        <label asp-for="Status">Status</label>
+        <input type="checkbox" asp-for="Status" />
+    </div>   
+    <input type="submit" class="btn btn-info" value="Create" />    
+</form>
+
+@section Scripts{
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+}

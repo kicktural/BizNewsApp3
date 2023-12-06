@@ -1,0 +1,80 @@
+﻿@model List<Article>
+
+
+
+
+    <a href="/Admin/Article/create" class="btn btn-outline-info form-control w-100">Create </a> 
+   
+                <table id="dataTable" class="table table-dark table-hover table-striped table-bordered">
+                    <colgroup>
+                        <col span="2" style="background-color:black">
+                        <col style="background-color: goldenrod">
+                        <col style="background-color:black">
+                        <col style="background-color:black">
+                        <col style="background-color:black">
+                        <col style="background-color:black">
+                        <col style="background-color:black">
+                        <col style="background-color:black">
+                        <col style="background-color:darkgreen">
+                    </colgroup>
+                    <thead>
+                        <tr class="text-center ">
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Created By</th>
+                            <th>Created Date</th>
+                            <th>View Count</th>
+                            <th>Category</th>
+                            <th>Tags</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="text-center">
+                                <td>#</td>
+                                <td>@item.Title</td>
+                                <td>
+                                    <img src="@item.PhotoUrl" width="200" class="img-fluid" />
+                                </td>
+                                <td>@item.CreatedBy</td>
+                                <td>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</td>
+                                <td>@item.ViewCount</td>
+                                <td>@item.Category.CategoryName</td>
+                                <td>
+                                    @foreach (var tag in item.ArticleTags)
+                                    {
+                                        <span>@tag.Tag.TagName /</span>
+                                    }
+                                </td>
+                                <td>@item.Status</td>
+                                <td>
+                                    <a href="/admin/article/detail/@item.Id" class="btn btn-success">Detail</a>
+                                    <a href="/admin/article/edit/@item.Id" class="btn btn-warning">Edit</a>
+                                    <form method="post" asp-action="Delete" asp-route-id="@item.Id">
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete: @item.Title')">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot class="text-center">
+                        <tr>
+                            <th>#</th>
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Created By</th>
+                            <th>Created Date</th>
+                            <th>View Count</th>
+                            <th>Category</th>
+                            <th>Tags</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            
+

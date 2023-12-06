@@ -1,0 +1,106 @@
+﻿@using BizNewsAppDB1.AuthDTO;
+@model RegisterDTO
+
+
+@{
+	Layout = "_AuthLayout";
+}
+
+<div class="card card-authentication1 mx-auto my-4">
+	<div class="card-body">
+		<div class="card-content p-2">
+			<div class="text-center">
+				<img src="~/Admin/images/logo-icon.png" alt="logo icon">
+			</div>
+			<div class="card-title text-uppercase text-center py-3">Sign Up</div>
+			<form method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+				<div class="form-group">
+					<label for="exampleInputName" class="sr-only">Name</label>
+					<div class="position-relative has-icon-right">
+						<input type="text" asp-for="Firstname" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Name">
+                        <span asp-validation-for="Firstname" cite="text-danger"></span>
+						<div class="form-control-position">
+							<i class="icon-user"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="exampleInputName" class="sr-only">Name</label>
+					<div class="position-relative has-icon-right">
+						<input type="text" asp-for="Lastname" id="exampleInputName" class="form-control input-shadow" placeholder="Enter Your Surname">
+						<span asp-validation-for="Lastname" cite="text-danger"></span>
+						<div class="form-control-position">
+							<i class="icon-user"></i>
+						</div>
+					</div>
+				</div>
+				          
+				<div class="form-group">
+					<label for="exampleInputEmailId" class="sr-only">Email ID</label>
+					<div class="position-relative has-icon-right">
+						<input type="email"  id="exampleInputEmailId" asp-for="Email" class="form-control input-shadow" placeholder="Enter Your Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+						<div class="form-control-position">
+							<i class="icon-envelope-open"></i>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword" class="sr-only">Password</label>
+					<div class="position-relative has-icon-right">
+						<input type="password" asp-for="Password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password">
+						<span asp-validation-for="Password" class="text-danger"></span>
+						<div class="form-control-position">
+							<i class="icon-lock"></i>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputPassword" class="sr-only">Password</label>
+					<div class="position-relative has-icon-right">
+						<input type="password" asp-for="ConfirmPassword" id="exampleInputPassword" class="form-control input-shadow" placeholder="Choose Password">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+						<div class="form-control-position">
+							<i class="icon-lock"></i>
+						</div>
+					</div>
+				</div>
+
+				<div class="gap-2">					
+					<div class="form-group">
+						<label asp-for="Photo">UserProfilePhoto</label>
+						<input id="inputFile" asp-for="Photo" type="file" required accept="image/*" class="form-control p_input">
+                        <span asp-validation-for="Photo" class="text-danger"></span>
+					</div>
+				</div>
+
+
+
+				<div class="form-group">
+					<div class="icheck-material-white">
+						<input type="checkbox" id="user-checkbox" checked="" />
+						<label for="user-checkbox">I Agree With Terms & Conditions</label>
+					</div>
+				</div>
+
+				<button type="submit" class="btn btn-light btn-block waves-effect waves-light">Sign Up</button>
+				<div class="text-center mt-3">Sign Up With</div>
+
+				<div class="form-row mt-4">
+					<div class="form-group mb-0 col-6">
+						<button type="button" class="btn btn-light btn-block"><i class="fa fa-facebook-square"></i> Facebook</button>
+					</div>
+					<div class="form-group mb-0 col-6 text-right">
+						<button type="button" class="btn btn-light btn-block"><i class="fa fa-twitter-square"></i> Twitter</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+	<div class="card-footer text-center py-3">
+		<p class="text-warning mb-0">Already have an account? <a href="/Auth/Login"> Sign In here</a></p>
+	</div>
+</div>

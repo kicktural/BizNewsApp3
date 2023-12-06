@@ -1,0 +1,22 @@
+﻿@model Category
+
+
+<div class="col-lg-6 m-auto">
+    <div class="card shadow p-3 ">
+        <form method="post">
+            <a href="/Admin/Category" class="btn btn-outline-warning w-100">  <i class="fa-solid fa-left-long"></i> Back</a>
+            <div class="form-group">
+                <label asp-for="CategoryName"></label>
+                <input type="text" class="btn btn-info w-100" asp-for="CategoryName" value="@Model.CategoryName" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                @{
+                    if (ViewBag.CategoryExist != null)
+                    {
+                        <p class="text text-danger">@ViewBag.CategoryExist</p>
+                    }
+                }
+            </div>
+            <input type="submit" class="btn btn-success" value="Update" />
+        </form>
+    </div>   
+</div>

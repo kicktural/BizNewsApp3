@@ -1,0 +1,366 @@
+﻿@model ArticleDetailVM
+<body>
+    <!-- Topbar Start -->
+    
+    <!-- Topbar End -->
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-white font-weight-normal">News</span></h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+                <div class="navbar-nav mr-auto py-0">
+                    <a href="/Home/Index" class="nav-item nav-link">Home</a>
+                    <a href="/Category/category" class="nav-item nav-link">Category</a>
+                    <a href="/Article/detail" class="nav-item nav-link active">Single News</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                        <div class="dropdown-menu rounded-0 m-0">
+                            <a href="#" class="dropdown-item">Menu item 1</a>
+                            <a href="#" class="dropdown-item">Menu item 2</a>
+                            <a href="#" class="dropdown-item">Menu item 3</a>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </div>
+                <form method="post" asp-controller="Home" asp-action="Search">
+                    <div class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                        <input type="text" class="form-control border-0" placeholder="Keyword">
+                        <div class="input-group-append">
+                            <button class="input-group-text bg-primary text-dark border-0 px-3">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+        
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+    <!-- Breaking News Start -->
+    <div class="container-fluid mt-5 mb-3 pt-3">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                        <div class="section-title border-right-0 mb-0" style="width: 180px;">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Detail</h4>
+                        </div>
+                        <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center bg-white border border-left-0"
+                             style="width: calc(100% - 180px); padding-right: 100px;">
+                            <div class="text-truncate"><a class="text-secondary text-uppercase font-weight-semi-bold" href="">@Model.Article.Title</a></div>
+                            <div class="text-truncate"><a class="text-secondary text-uppercase font-weight-semi-bold" href="">@Model.Article.Content</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breaking News End -->
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- News Detail Start -->
+                    <div class="position-relative mb-3">
+                        <img class="img-fluid w-100" src="@Model.Article.PhotoUrl" style="object-fit: cover;">
+                        <!--img/news-700x435-1.jpg-->
+                        <div class="bg-white border border-top-0 p-4">
+                            <div class="mb-3">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                   href="/Category/category/@Model.Article.Id">@Model.Article.Category.CategoryName</a>
+                                <a class="text-body" href="">@Model.Article.CreateDate.ToString("dddd, dd MMMM yyyy")</a>
+                            </div>
+                            <h1 class="mb-3 text-secondary text-uppercase font-weight-bold">@Model.Article.Title</h1>
+                            <p>
+                                @Model.Article.Content
+                            </p>
+                           
+                             @foreach (var item in Model.SimilarArticles)
+                            {
+                                
+                            <h5 class="text-uppercase font-weight-bold mb-3" href="/Article/detail/@item.Id">@item.Title</h5>
+                            <img class="img-fluid w-50 float-right mr-4 mb-2" src="@item.PhotoUrl">
+                            <p>
+                                Diam dolor est labore duo invidunt ipsum clita et, sed et lorem voluptua tempor
+                                invidunt at est sanctus sanctus. Clita dolores sit kasd diam takimata justo diam
+                                lorem sed. Magna amet sed rebum eos. Clita no magna no dolor erat diam tempor
+                                rebum consetetur, sanctus labore sed nonumy diam lorem amet eirmod. No at tempor
+                                sea diam kasd, takimata ea nonumy elitr sadipscing gubergren erat. Gubergren at
+                                lorem invidunt sadipscing rebum sit amet ut ut, voluptua diam dolores at
+                                sadipscing stet. Clita dolor amet dolor ipsum vero ea ea eos. Invidunt sed diam
+                                dolores takimata dolor dolore dolore sit. Sit ipsum erat amet lorem et, magna
+                                sea at sed et eos. Accusam eirmod kasd lorem clita sanctus ut consetetur et. Et
+                                duo tempor sea kasd clita ipsum et. Takimata kasd diam justo est eos erat
+                                aliquyam et ut.
+                            </p>                          
+                            }
+                            @foreach (var item in Model.SimilarArticleTake2)
+                            {
+                                <h5 class="text-uppercase font-weight-bold mb-3" href="/Article/detail/@item.Id/@item.SeoUrl">@item.Title</h5>
+                                <img class="img-fluid w-50 mr-4 mb-2" href="/Article/detail/@item.Id" src="@item.PhotoUrl">
+                                <p>
+                                    Diam dolor est labore duo invidunt ipsum clita et, sed et lorem voluptua tempor
+                                    invidunt at est sanctus sanctus. Clita dolores sit kasd diam takimata justo diam
+                                    lorem sed. Magna amet sed rebum eos. Clita no magna no dolor erat diam tempor
+                                    rebum consetetur, sanctus labore sed nonumy diam lorem amet eirmod. No at tempor
+                                    sea diam kasd, takimata ea nonumy elitr sadipscing gubergren erat. Gubergren at
+                                    lorem invidunt sadipscing rebum sit amet ut ut, voluptua diam dolores at
+                                    sadipscing stet. Clita dolor amet dolor ipsum vero ea ea eos. Invidunt sed diam
+                                    dolores takimata dolor dolore dolore sit. Sit ipsum erat amet lorem et, magna
+                                    sea at sed et eos. Accusam eirmod kasd lorem clita sanctus ut consetetur et. Et
+                                    duo tempor sea kasd clita ipsum et. Takimata kasd diam justo est eos erat
+                                    aliquyam et ut.
+                                </p>
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle mr-2" src="~/Biznews/img/user.jpg" width="25" height="25" alt="">
+                                <span>By @Model.Article.CreatedBy</span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="ml-3"><i class="far fa-eye mr-2"></i>@Model.Article.ViewCount</span>
+                                <span class="ml-3"><i class="far fa-comment mr-2">2</i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- News Detail End -->
+                    <div class="container-fluid pt-5 mb-3">
+                        <div class="container">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Active News</h4>
+                            </div>
+                            <div class="owl-carousel news-carousel carousel-item-4 position-relative">
+                                @for (int i = 0; i < Model.ArticlesStatus.Count; i++)
+                                {
+                                    <div class="position-relative overflow-hidden" style="height: 300px;">
+                                        <img class="img-fluid h-100" src="@Model.ArticlesStatus[i].PhotoUrl" style="object-fit: cover;">
+                                        <div class="overlay">
+                                            <div class="mb-2">
+                                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                                   href="/Category/category/@Model.ArticlesStatus[i].Id">@Model.ArticlesStatus[i].Category.CategoryName</a>
+                                          @*       <a class="text-white" href=""><small>@Model.ArticlesStatus[i].CreateDate.ToString("dd MMMM, yyyy")</small></a> *@
+                                            </div>
+                                            <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="/Article/Detail/@Model.ArticlesStatus[i].Id/@Model.ArticlesStatus[i].SeoUrl">@Model.ArticlesStatus[i].Title</a>
+                                      @*       <a class="text-white" href=""><small>By @Model.FeaturedArticles[i].CreatedBy</small></a> *@
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Comment List Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold"> Comments</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-4">
+                            @foreach (var item in Model.ArticleComments)
+                            {
+                                <div class="media mb-4">
+                                    <img src="@Model.Article.PhotoUrl" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <div class="media-body">
+                                        
+                                        <h4 class="media-heading user_name">@item.User.Firstname @item.User.Lastname <small>@TimeCommentHelper.TimeAgo(item.PublishDate)</small></h4>
+                                        <p>
+                                          @item.Content
+                                        </p>
+
+                                        @if (User.IsInRole("Admin") || item.UserId == ViewBag.User)
+                                        {
+                                        <form method="post" asp-action="DeleteComment" asp-controller="Article">
+                                        <input type="hidden" name="commentId" asp-for="@item.Id" />
+                                        <input type="hidden" name="articleId" asp-for="Article.Id" />
+                                        <input type="hidden" name="seoUrl" asp-for="Article.SeoUrl" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">Reply</button>
+                                        </form>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                       
+                           
+                        </div>
+                    </div>
+                    <!-- Comment List End -->
+                    <!-- Comment Form Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Leave a comment</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-4">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form method="post" asp-controller="Article" asp-action="AddComment">
+                                    <div class="form-group">
+                                        <input type="hidden" name="articleId" asp-for="Article.Id" />
+                                        <input type="hidden" name="seoUrl" asp-for="Article.SeoUrl" />
+                                        <label for="message">Message *</label>
+                                        <textarea id="message" name="Content" cols="30" rows="5" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <input type="submit" value="Leave a comment"
+                                               class="btn btn-primary font-weight-semi-bold py-2 px-3">
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <a href="/Auth/login?controller=article&action=detail&id=@Model.Article.Id&seoUrl=@Model.Article.SeoUrl " class="btn btn-info">Login</a>
+                            }
+                        
+                        </div>
+                    </div>
+                    <!-- Comment Form End -->
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Social Follow Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
+                                <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Fans</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
+                                <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                    <div class="section-title mb-0">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Recent comment Post</h4>
+                    </div>
+                      @foreach (var item in Model.ArtCommentPublishdate)
+                        {
+                         @*   <a href="/home/Index/@item.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="w-50 justify-content-between">
+                                    <img src="@item.PhotoUrl" href="/Article/Detail/@item.Id/@item.SeoUrl" alt="" class="img-fluid float-left">
+                                    @if (item.Title.Length > 18)
+                                    {
+                                    <h3 class="font-weight-bold" href="/Article/detail/@item.Id/@item.SeoUrl">@Html.Raw(@item.Title.Substring(18)) </h3>                              
+                                    }
+                                    else
+                                    {
+                                        <h3 class="font-weight-bold" href="/Article/detail/@item.Id/@item.SeoUrl">@item.Title </h3>
+                                    }
+                                    <small>@item.CreateDate.ToString("dddd, dd MMMM"),</small>
+                                    <small>ViewConut @item.ViewCount</small>
+                                </div>
+                            </a>*@
+
+
+
+                            <a href="/article/detail/@item.Article.Id/@item.Article.SeoUrl" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="w-100 justify-content-between">
+                                    <img src="@item.Article.PhotoUrl" href="/Article/Detail/@item.Id" alt="" class="img-fluid float-left">
+                                    @if (item.Article.Title.Length > 15)
+                                    {
+
+                                        <h3 class="font-weight-blod mb-1 ">@Html.Raw(@item.Article.Title.Substring(0, 15)) </h3>
+                                    }
+                                    else
+                                    {
+                                        <h3 class="font-weight-blod mb-1 ">@Html.Raw(item.Article.Title)</h3>
+                                    }
+                                    <small>@item.Article.CreateDate.ToString("dddd, dd MMMM"),</small>
+                                    @* <small>ViewConut @item.ViewCount</small> *@
+                                </div>
+                            </a>
+                        }   
+
+
+                    </div>
+                    <!-- Social Follow End -->
+                    <!-- Ads Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>
+                        </div>
+                        <div class="bg-white text-center border border-top-0 p-3">
+                            <a href=""><img class="img-fluid" width="250" src="https://i.pinimg.com/564x/8e/03/8d/8e038d47b0373a765e07edce129d35b9.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <!-- Ads End -->
+                    <!-- Popular News Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            @foreach (var item in Model.PopularPosts)
+                            {                              
+                         @*   <div class="d-flex align-items-center bg-white mb-3" style="height: 26px;">
+                                <img class="img-fluid" height="26"  width="80" src="@item.PhotoUrl" alt="">
+                                    <!--img/news-110x110-1.jpg-->
+                                <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="">@Model.Article.Category.CategoryName</a>
+                                        <a class="text-body" href=""><small>Jan 01, 2045</small></a>
+                                    </div>
+                                    <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="">@item.Title</a>
+                                </div>
+                            </div>*@
+                                <a href="/article/detail/@item.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                                    <div class="w-100 justify-content-between">
+                                        <img src="@item.PhotoUrl" href="/Article/Detail/@item.Id/@item.SeoUrl" alt="" class="img-fluid float-left">
+                                        @if (item.Title.Length > 15)
+                                        {
+                                            
+                                         <h3 class="font-weight-blod mb-1 ">@Html.Raw(@item.Title.Substring(15)) </h3>
+                                        }
+                                        else
+                                        {
+                                            <h3 class="font-weight-blod mb-1 ">@Html.Raw(item.Title)</h3>
+                                        }
+                                        <small>@item.CreateDate.ToString("dddd, dd MMMM"),</small>
+                                        <small>ViewConut @item.ViewCount</small>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+
+                    </div>
+                    <!-- Popular News End -->              
+                    <!-- Tags Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Tags</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <div class="d-flex flex-wrap m-n1">                         
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Health</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Education</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Science</a>
+                                <a href="/Category/category/@Model.Article.Id" class="btn btn-sm btn-outline-secondary m-1">Business</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News With Sidebar End -->
+   
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+</body>
+
+</html>

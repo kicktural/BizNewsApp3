@@ -1,0 +1,35 @@
+﻿@model List<Microsoft.AspNetCore.Identity.IdentityRole>
+
+    
+<a href="/Admin/role/Create" class="btn split-btn-success m-1 form-control w-100"> <i class="fa-solid fa-user-plus"></i> Create</a>
+<table class="table table-dark">
+    <colgroup>
+         <col  style="background-color:green"/>
+         <col style="background-color:darkred" />
+         <col span="1" style="background-color:darkblue" />
+      </colgroup>
+    <thead>
+        <tr class="text-center">
+            <th>Role Name</th>
+            <th>Delete</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>@item.Name</td>
+                <td>
+                    <a href="/Admin/role/delete/@item.Id" class="btn btn-danger">Delete</a>
+                </td>
+                <td>
+                    <a href="/Admin/role/detail/@item.Id" class="btn btn-info">Detail</a>
+                </td>
+                <td>
+                    <a href="/Admin/role/UpdateRole/@item.Id" class="btn btn-success">UpdateRole</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

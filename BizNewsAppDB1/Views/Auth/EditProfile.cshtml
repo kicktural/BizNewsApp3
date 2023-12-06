@@ -1,0 +1,48 @@
+﻿﻿@{
+    Layout = "_AuthLayout";
+}
+
+@model User
+
+<h3 class="card-title text-left mb-3">Edit Profile</h3>
+<form method="post" enctype="multipart/form-data">
+    <div class="text-danger" asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="ArticleComments" />
+    <input type="hidden" asp-for="PhotoUrl" />
+    <div class="d-flex gap-2">
+        <div class="form-group">
+            <label asp-for="Firstname"></label>
+            <input asp-for="Firstname" type="text" class="form-control p_input">
+        </div>
+        <div class="form-group">
+            <label asp-for="Lastname"></label>
+            <input asp-for="Lastname" type="text" class="form-control p_input">
+            <input asp-for="Id" type="hidden" />
+        </div>
+    </div>
+    <div class="d-flex gap-2">
+        <div class="form-group">
+            <label for="UserName">UserName</label>
+            <input name="UserName" value="@Model.UserName" disabled type="text" class="form-control p_input bg-dark">
+        </div>
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input name="Email" value="@Model.Email" disabled type="email" class="form-control p_input bg-dark">
+        </div>
+    </div>
+
+    <div class="d-flex gap-2">
+        <div class="w-25">
+            <img id="image_upload_preview" src="@Model.PhotoUrl" alt="your image" class="img-fluid object-fit-contain" />
+        </div>
+        <div class="form-group">
+
+            <label for="Photo">ProfilePhoto</label>
+            <input id="inputFile" name="Photo" type="file" accept="image/*" class="form-control p_input">
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary btn-block enter-btn">Edit Profile</button>
+    </div>
+</form>

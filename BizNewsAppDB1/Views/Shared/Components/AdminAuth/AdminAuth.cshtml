@@ -1,0 +1,25 @@
+﻿@model User
+
+<li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span style="color:darkblue" class="mr-2 d-none font-weight-bold text-right d-lg-inline text-gray-900 ">@Model.Firstname @Model.Lastname</span>
+        <img width="50" class="img-profile rounded-circle"
+             src="@Model.PhotoUrl">
+    </a>
+    <!-- Dropdown - User Information -->
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+         aria-labelledby="userDropdown">
+        <a class="dropdown-item" href="/Admin/Profile">
+            <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+            Profile
+        </a> 
+        <form method="post" asp-area="" asp-action="Logout" asp-controller="Auth">
+            <button type="submit" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+            </button>
+        </form>
+        
+    </div>
+</li>

@@ -1,0 +1,436 @@
+﻿@using BizNewsAppDB1.ViewsModels;
+@using BizNewsAppDB1.Helper;
+@model HomeVM
+
+@{
+    int count = 1;
+}
+
+
+
+<!-- Navbar Start -->
+<div class="container-fluid p-0">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+            <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span class="text-white font-weight-normal">News</span></h1>
+        </a>     
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between px-0 px-lg-3" id="navbarCollapse">
+            <div class="navbar-nav mr-auto py-0">
+                <a href="/Home/index" class="nav-item nav-link active">Home</a>
+                <a href="/Category/category" class="nav-item nav-link">Category</a>
+                <a href="/Article/detail" class="nav-item nav-link">Single News</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Dropdown</a>
+                    <div class="dropdown-menu rounded-0 m-0">
+                        <a href="#" class="dropdown-item">Menu item 1</a>
+                        <a href="#" class="dropdown-item">Menu item 2</a>
+                        <a href="#" class="dropdown-item">Menu item 3</a>
+                    </div>
+                </div>
+                <a href="/Auth/Register" class="nav-item nav-link">Contact</a>
+            </div>
+             <form method="post" asp-controller="Home" asp-action="Search"  class="input-group ml-auto d-none d-lg-flex" style="width: 100%; max-width: 300px;">
+                <input name="search" type="text" class="form-control border-0" placeholder="Keyword">
+                <div class="input-group-append">
+                    <button type="submit" class="input-group-text bg-primary text-dark border-0 px-3">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form> 
+        </div>
+    </nav>
+</div>
+<!-- Navbar End -->
+
+
+
+
+
+    <!-- Main News Slider Start -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-7 px-0">
+                <div class="owl-carousel main-carousel position-relative">
+                    @foreach (var item in Model.FeaturedArticles.Take(3))
+                {
+                    
+                    <div class="position-relative overflow-hidden" style="height: 500px;">
+                        <img class="img-fluid h-100" src="@item.PhotoUrl" style="object-fit: cover;">
+                        <div class="overlay">
+                            <div class="mb-2">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                    href="/Category/category/@item.Id">@item.Category.CategoryName</a>
+                                <a class="text-white" href="">@item.CreateDate.ToString("dddd, MMMM dddd yyyy")</a>
+                            </div>
+                              <a class="h2 m-0 text-white text-uppercase font-weight-bold" href="/Article/detail/@item.Id/@item.SeoUrl">@item.Title</a>
+                            <small><a href="/Article/detail/@item.Id" class="font-weight-bold" title="">By @item.User.Firstname</a></small>
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                               href="/Category/category/@item.Id">@item.ArticleTags</a>
+                        </div>
+                    </div>
+                }
+                   
+                </div>
+            </div>
+            <div class="col-lg-5 px-0">
+                <div class="row mx-0">
+                    @foreach (var item in Model.LatestArticles.Take(4))
+                {
+                    
+                    <div class="col-md-6 px-0">
+                        <div class="position-relative overflow-hidden" style="height: 250px;">
+                            <img class="img-fluid w-100 h-100" src="@item.PhotoUrl" style="object-fit: cover;">
+                            <div class="overlay">
+                                <div class="mb-2">
+                                    <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                        href="/Category/category/@item.Id">@item.Category.CategoryName</a>
+                                    <a class="text-white" href=""><small>@item.CreateDate.ToString("dddd, MMMM yyyy")</small></a>
+                                </div>
+                                <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="/Article/detail/@item.Id/@item.SeoUrl">@item.Title</a>
+                                <small><a href="/Article/detail/@item.Id" title="">By @item.User.Firstname</a></small>
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                   href="/Category/category/@item.Id">@item.ArticleTags</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Main News Slider End -->
+
+
+    <!-- Breaking News Start -->
+    <div class="container-fluid bg-dark py-3 mb-3">
+        <div class="container">
+            <div class="row align-items-center bg-dark">
+                <div class="col-12">
+                    <div class="d-flex justify-content-between">
+                        <div class="bg-primary text-dark text-center font-weight-medium py-2" style="width: 170px;">Breaking News</div>
+                        <div class="owl-carousel tranding-carousel position-relative d-inline-flex align-items-center ml-3"
+                            style="width: calc(100% - 170px); padding-right: 90px;">
+                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus eget ante tincidunt, sed faucibus nisl sodales</a></div>
+                            <div class="text-truncate"><a class="text-white text-uppercase font-weight-semi-bold" href="">Lorem ipsum dolor sit amet elit. Proin interdum lacus eget ante tincidunt, sed faucibus nisl sodales</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Breaking News End -->
+
+
+    <!-- Featured News Slider Start -->
+    <div class="container-fluid pt-5 mb-3">
+        <div class="container">
+            <div class="section-title">
+                <h4 class="m-0 text-uppercase font-weight-bold">Featured News</h4>
+            </div>
+            <div class="owl-carousel news-carousel carousel-item-4 position-relative">
+                @for (int i = 0; i < Model.FeaturedArticles.Count; i++)
+            {            
+                <div class="position-relative overflow-hidden" style="height: 300px;">
+                    <img class="img-fluid h-100" src="@Model.FeaturedArticles[i].PhotoUrl" style="object-fit: cover;">
+                    <div class="overlay">
+                        <div class="mb-2">
+                            <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                href="/Category/category/@Model.FeaturedArticles[i].Id">@Model.FeaturedArticles[i].Category.CategoryName</a>
+                            <a class="text-white" href=""><small>@Model.FeaturedArticles[i].CreateDate.ToString("dd MMMM, yyyy")</small></a>
+                        </div>
+                        <a class="h6 m-0 text-white text-uppercase font-weight-semi-bold" href="/Article/Detail/@Model.FeaturedArticles[i].Id/@Model.FeaturedArticles[i].SeoUrl">@Model.FeaturedArticles[i].Title</a>
+                        <a class="text-white" href=""><small>By @Model.FeaturedArticles[i].CreatedBy</small></a>
+                    </div>
+                </div>
+            }
+            </div>
+
+        </div>
+    </div>
+    <!-- Featured News Slider End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="section-title">
+                                <h4 class="m-0 text-uppercase font-weight-bold">Active Latest News</h4>
+                                <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                            </div>
+                        </div>
+                        <!--Start LASTEST NEWS-->
+                          @foreach (var item in Model.ActiveLatestArticles)
+                    {                    
+
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="@item.PhotoUrl" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                           href="/Category/category/@item.Id">@item.Category.CategoryName</a>
+                                        <a class="text-body" href=""><small>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</small></a>
+                                    </div>
+                                    <a class="h4 d-block mb-0 text-secondary text-uppercase font-weight-bold" href="/Article/detail/@item.Id">@item.Title</a>
+                                    <small><a href="/Article/detail/@item.Id" class="font-weight-semi-bold" title="">By @item.User.Firstname</a></small>
+                                </div>
+                                <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle mr-2" src="~/Biznews/img/user.jpg" width="25" height="25" alt="">
+                                        <small>@item.CreatedBy</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <small class="ml-3"><i class="far fa-eye mr-2"></i>@item.ViewCount</small>                             
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="col-lg-12 mb-3">
+                        <a href=""><img class="img-fluid w-100" src="~/Biznews/img/ads-728x90.png" alt=""></a>
+                        <!--~/Biznews/img/ads-728x90.png-->
+                    </div>
+
+                    <div class="col-12">
+                        <div class="section-title">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Latest News</h4>
+                            <a class="text-secondary font-weight-medium text-decoration-none" href="">View All</a>
+                        </div>
+                    </div>
+                     @foreach (var item in Model.LatestArticles)
+                    {
+                        count++;
+                        <div class="col-lg-6">
+                            <div class="position-relative mb-3">
+                                <img class="img-fluid w-100" src="@item.PhotoUrl" style="object-fit: cover;">
+                                <div class="bg-white border border-top-0 p-4">
+                                    <div class="mb-2">
+                                        <a class="badge badge-primary text-uppercase font-weight-semi-bold p-2 mr-2"
+                                           href="/Category/category/@item.Id">@item.Category.CategoryName</a>
+                                        <a class="text-body" href=""><small>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</small></a>
+                                    </div>
+                                    <a class="h4 d-block mb-0 text-secondary text-uppercase font-weight-bold" href="/Article/detail/@item.Id">@item.Title</a>
+@*                                     <small><a href="/Article/detail/@item.Id" class="font-weight-semi-bold" title="">By @item.User.Firstname</a></small>              
+ *@                                </div>
+                                <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                                    <div class="d-flex align-items-center">
+                                        <img class="rounded-circle mr-2" src="~/Biznews/img/user.jpg" width="25" height="25" alt="">
+                                        <small>@item.CreatedBy</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <small class="ml-3"><i class="far fa-eye mr-2"></i>@item.ViewCount</small>
+                                        <small class="ml-3"><i class="far fa-comment mr-2"></i>@item.ArticleComments</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }            
+                    </div>
+                </div>       
+
+
+                <div class="col-lg-4">
+                    <!-- Social Follow Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Follow Us</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #39569E;">
+                                <i class="fab fa-facebook-f text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Fans</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #52AAF4;">
+                                <i class="fab fa-twitter text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #0185AE;">
+                                <i class="fab fa-linkedin-in text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Connects</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #C8359D;">
+                                <i class="fab fa-instagram text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none mb-3" style="background: #DC472E;">
+                                <i class="fab fa-youtube text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Subscribers</span>
+                            </a>
+                            <a href="" class="d-block w-100 text-white text-decoration-none" style="background: #055570;">
+                                <i class="fab fa-vimeo-v text-center py-4 mr-3" style="width: 65px; background: rgba(0, 0, 0, .2);"></i>
+                                <span class="font-weight-medium">12,345 Followers</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Social Follow End -->
+
+                    <!-- Ads Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Advertisement</h4>
+                        </div>
+                        <div class="bg-white text-center border border-top-0 p-3">
+                        <a href=""><img class="img-fluid" width="200" src="https://i.pinimg.com/564x/78/af/d4/78afd47f43e0842336c759e5a84c7511.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <!-- Ads End -->
+
+                    <!-- Popular News Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Tranding News</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3 text-center">
+                            @foreach (var item in Model.PopulaeArticle)
+                        {
+                            <a href="/home/Detail/@item.Id" class="list-group-item list-group-item-action flex-column align-items-start">
+                                <div class="w-75 justify-content-between">
+                                    <img src="@item.PhotoUrl" href="/Article/Detail/@item.Id" alt="" class="img-fluid float-left">
+                                    <strong class="font-weight-blod mb-1h" href="/Article/detail/@item.Id">@item.Title</strong>
+                                    <small>@item.CreateDate.ToString("MM/dd/yyyy"),</small>
+                                    <small>ViewConut @item.ViewCount</small>
+                                </div>
+                            </a>
+                        }
+                            
+                        </div>
+                    </div>
+                    <!-- Popular News End -->
+
+
+
+              @*   <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            @if (pageHelper.TotalPages > 0)
+                            {
+                                <ul class="pagination justify-content-start">
+                                    @if (pageHelper.CurrentPage > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home"
+                                               asp-action="Index" asp-route-pg="1">First</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home"
+                                               asp-action="Index" asp-route-pg="@(pageHelper.CurrentPage-1)">Prev</a>
+                                        </li>
+                                    }
+                                    @for (int i = pageHelper.StartPage; i <= pageHelper.EndPage; i++)
+                                    {
+                                        <li class="page-item"><a class="page-link active" asp-controller="Home" asp-action="Index" asp-route-pg="@i">@i</a></li>
+                                    }
+
+                                    @if (pageHelper.CurrentPage < pageHelper.TotalPages)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home"
+                                               asp-action="Index" asp-route-pg="@(pageHelper.CurrentPage +1)">Next</a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link" asp-controller="Home"
+                                               asp-action="Index" asp-route-pg="@(pageHelper.TotalPages)">Last</a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </nav>
+                    </div><!-- end col --> 
+                <div><! -- end row --> *@
+
+
+                    <div class="section-title mb-0">
+                        <h4 class="m-0 text-uppercase font-weight-bold">Recent Post</h4>
+                    </div>
+                   @foreach (var item in Model.recentPost)
+                {
+                    <div class="d-flex align-items-center bg-white mb-3" style="height: 110px;">
+                        <img class="img-fluid" width="85" src="@item.PhotoUrl" alt="">
+                        <div class="w-100 h-100 px-3 d-flex flex-column justify-content-center border border-left-0">
+                            <div class="mb-2">
+                                <a class="badge badge-primary text-uppercase font-weight-semi-bold p-1 mr-2" href="/Category/category/@item.Id">@item.Category.CategoryName</a>
+                                <a class="text-body" href=""><small>@item.CreateDate.ToString("dddd, dd MMMM yyyy")</small></a>
+                            </div>
+                            <a class="h6 m-0 text-secondary text-uppercase font-weight-bold" href="/Article/detail/@item.Id/@item.SeoUrl">@item.Title</a>
+                        </div>
+                    </div>
+
+                }
+
+                    <!-- Tags Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Category</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <div class="d-flex flex-wrap m-n1">
+                                <a href="/Category/category" class="btn btn-sm btn-outline-secondary m-1">Programmer</a>
+                                <a href="/Category/category" class="btn btn-sm btn-outline-secondary m-1">Business</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Corporate</a>
+                                <a href="/Category/category" class="btn btn-sm btn-outline-secondary m-1">Ghost</a>                          
+                                <a href="/Category/category" class="btn btn-sm btn-outline-secondary m-1">Business</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Foods</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary m-1">Travel</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- News With Sidebar End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

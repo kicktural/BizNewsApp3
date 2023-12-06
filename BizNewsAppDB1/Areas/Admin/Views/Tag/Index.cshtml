@@ -1,0 +1,59 @@
+﻿@model List<Tag>
+
+@* 
+<form method="get" asp-action="TagSearch">
+
+    <div class="searching d-flex">
+        <input type="search" placeholder="Enter Tag name" class="form-control w-25 rounded m-2" value="@ViewData["Gettagnames"]"
+               name="Empsearch" />
+        <button type="submit" class="btn btn-success">Search</button>
+    </div>
+
+</form>
+ *@
+
+
+
+<a href="/Admin/Tag/Create" class="btn btn-primary m-1 form-control w-100"> <i class="fa-solid fa-user-plus"></i>Tag Create</a>
+<table class="table  table-striped ">
+    <colgroup>
+        <col span="2" style="background-color:black">
+        <col style="background-color:dodgerblue">
+        <col style="background-color:darkgreen">
+        <col style="background-color:darkred">
+    </colgroup>
+    <thead>
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Tag Name</th>
+            <th>Update</th>
+            <th>Detail</th>  
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>@item.Id</td>
+                <td>@item.TagName <br>
+                    @item.CreateDate.ToString("dddd, dd MMMM yyyy")
+                </td>
+                <td>
+                    <a href="/Admin/tag/Update/@item.Id" class="btn btn-info w-29">Update  <i class="fa-solid fa-wrench"></i></a>
+            @*        <button onclick="return confirm('UpdateDate: @item.UpdateDate' )" class="btn btn-dark">Update Date @item.UpdateDate.ToString("dddd, dd MMMM yyyy")</button>  *@             
+                 </td>
+
+                  <td>
+                    <a href="/Admin/Tag/Detail/@item.Id" class="btn btn-success w-29">Detail  <i class="fa-solid fa-clock-rotate-left"></i></a>
+                  </td>
+
+                  <td>
+                    <a href="/Admin/Tag/Remove/@item.Id" class="btn btn-danger w-29 ">Delete  <i class="fa-solid fa-trash"></i></a>
+                  </td>            
+            </tr>
+        }
+    </tbody>
+</table>
+
+
